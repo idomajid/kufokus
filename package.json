@@ -1,5 +1,5 @@
 {
-  "name": "chrome-extension-react-template",
+  "name": "kufokus",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.10",
+    "@types/chrome": "^0.0.326",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^4.1.10"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

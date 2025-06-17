@@ -1,10 +1,11 @@
 {
-    "manifest_version": 3,
-    "name": "React Chrome Extension",
-    "version": "1.0.0",
-    "description": "A simple React app as a Chrome extension",
-    "action": {
-      "default_popup": "index.html"
-    },
-    "permissions": []
-  }
+  "manifest_version": 3,
+  "name": "Kufokus",
+  "version": "1.0.0",
+  "description": "Selesaikan pekerjaan tanpa hambatan",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": ["tabs", "scripting", "activeTab"],
+  "host_permissions": ["http://*/*", "https://*/*"]
+}
