@@ -6,8 +6,15 @@
   "action": {
     "default_popup": "index.html"
   },
-  "permissions": ["tabs", "scripting", "activeTab"],
-  "host_permissions": ["<all_urls>"],
+  "permissions": [
+    "tabs",
+    "scripting",
+    "activeTab",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "host_permissions": ["*://www.instagram.com/*"],
+
   "background": {
     "service_worker": "background.js"
   }

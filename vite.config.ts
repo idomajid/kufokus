@@ -13,6 +13,10 @@ export default defineConfig({
           src: "public/manifest.json",
           dest: ".",
         },
+        {
+          src: "public/background.js", // 👈 make sure this file exists
+          dest: ".",
+        },
       ],
     }),
   ],
@@ -27,3 +31,5 @@ export default defineConfig({
   },
   base: "./", // ensures relative paths
 });
+
+// "host_permissions": ["<all_urls>"],
