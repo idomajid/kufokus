@@ -9,14 +9,8 @@ export default defineConfig({
     tailwindcss(),
     viteStaticCopy({
       targets: [
-        {
-          src: "public/manifest.json",
-          dest: ".",
-        },
-        {
-          src: "public/background.js", // 👈 make sure this file exists
-          dest: ".",
-        },
+        { src: "public/manifest.json", dest: "." },
+        { src: "public/background.js", dest: "." },
       ],
     }),
   ],
@@ -29,7 +23,5 @@ export default defineConfig({
     },
     emptyOutDir: true,
   },
-  base: "./", // ensures relative paths
+  base: "./",
 });
-
-// "host_permissions": ["<all_urls>"],
