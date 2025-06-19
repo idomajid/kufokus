@@ -6,7 +6,9 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
       try {
         const currentHost = new URL(tab.url).hostname;
         if (blocked.some((domain) => currentHost.includes(domain))) {
-          chrome.tabs.update(tabId, { url: "https://cats.com/" });
+          chrome.tabs.update(tabId, {
+            url: "https://kufokus-redirect.vercel.app/",
+          });
         }
       } catch (err) {
         console.error("Invalid URL", err);
