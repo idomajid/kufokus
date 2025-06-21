@@ -1,15 +1,31 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import SwitchToggle from "./components/SwitchToggle";
+
 
 export default function App() {
   const [input, setInput] = useState("");
   const [blockedSites, setBlockedSites] = useState<string[]>([]);
+  const [enabled, setEnabled] = useState(false);
+
+
 
   useEffect(() => {
     chrome.storage.local.get("blockedSites", (data) => {
       setBlockedSites(data.blockedSites || []);
     });
   }, []);
+
+  useEffect(() => {
+    chrome.storage.local.get(["kufokusEnabled"], (result) => {
+      setEnabled(result.kufokusEnabled ?? false);
+    });
+  }, []);
+
+  // Save to storage on change
+  useEffect(() => {
+    chrome.storage.local.set({ kufokusEnabled: enabled });
+  }, [enabled]);
 
   const saveSites = (newList: string[]) => {
     chrome.storage.local.set({ blockedSites: newList });
@@ -39,11 +55,18 @@ export default function App() {
     <div className="min-w-[400px] max-w-md mx-auto bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900  shadow-2xl border border-slate-700/50 overflow-hidden">
       {/* Header */}
       <div className="relative bg-sky-500 p-6 text-white">
-        <div className="absolute inset-0 bg-black/10"></div>
+
+
         <div className="relative">
           <div className="flex items-center gap-3 mb-2">
 
             <h1 className="text-2xl font-bold tracking-tight">Kufokus</h1>
+            <SwitchToggle
+              checked={enabled}
+              onChange={setEnabled}
+              onColor="#60a5fa"  // blue-400
+              offColor="#d1d5db" // gray-300
+            />
           </div>
           <p className="text-indigo-100 font-medium flex items-center">
             <span> Semangat!!!</span>
