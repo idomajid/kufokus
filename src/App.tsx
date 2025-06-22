@@ -77,20 +77,24 @@ export default function App() {
 
         <div className="relative">
           <div className="flex items-center gap-3 mb-2">
-
-            <h1 className="text-2xl font-bold tracking-tight">Kufokus</h1>
+            <h1 className="text-3xl font-extrabold tracking-tight">Kufokus</h1>
             <SwitchToggle
               checked={enabled}
               onChange={setEnabled}
-              onColor="#60a5fa"  // blue-400
+              onColor="#60a5fa" // blue-400
               offColor="#d1d5db" // gray-300
             />
           </div>
-          <p className="text-grey-100 font-medium flex items-center">
-            <span> Semangat!!!</span>
-            <span className="text-lg">🫡</span>
+
+          <p className="text-gray-100 font-medium flex items-center gap-2">
+            <span className="italic">Bring the energy, stay focused!</span>
+            <span className="text-xl animate-bounce">🤘</span>
           </p>
         </div>
+
+
+
+
       </div>
 
       {/* Content */}
@@ -128,7 +132,7 @@ export default function App() {
             </div>
             <button
               onClick={handleAdd}
-              className="bg-gradient-to-r from-sky-600 to-sky-600 hover:from-sky-700 hover:to-sky-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-500 hover:to-sky-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
 
               + Add
