@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import SwitchToggle from "./components/SwitchToggle";
+import { domainSuggestions } from "./data/domains";
 
 
 export default function App() {
   const [input, setInput] = useState("");
   const [blockedSites, setBlockedSites] = useState<string[]>([]);
   const [enabled, setEnabled] = useState(false);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
 
 
-
+  // Predefined domain suggestions
   useEffect(() => {
     chrome.storage.local.get("blockedSites", (data) => {
       setBlockedSites(data.blockedSites || []);
     });
   }, []);
+
 
   useEffect(() => {
     chrome.storage.local.get(["kufokusEnabled"], (result) => {
@@ -26,6 +29,21 @@ export default function App() {
   useEffect(() => {
     chrome.storage.local.set({ kufokusEnabled: enabled });
   }, [enabled]);
+
+  // Domain suggestions
+  useEffect(() => {
+    if (input.trim() === "") {
+      setSuggestions([]);
+      return;
+    }
+    const matches = domainSuggestions
+      .filter((domain) =>
+        domain.toLowerCase().includes(input.toLowerCase())
+      )
+      .slice(0, 5); // limit suggestions
+    setSuggestions(matches);
+  }, [input]);
+
 
   const saveSites = (newList: string[]) => {
     chrome.storage.local.set({ blockedSites: newList });
@@ -68,7 +86,7 @@ export default function App() {
               offColor="#d1d5db" // gray-300
             />
           </div>
-          <p className="text-indigo-100 font-medium flex items-center">
+          <p className="text-grey-100 font-medium flex items-center">
             <span> Semangat!!!</span>
             <span className="text-lg">🫡</span>
           </p>
@@ -84,14 +102,29 @@ export default function App() {
           </label>
           <div className="flex gap-3">
             <div className="flex-1 relative">
-              {/* <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" /> */}
               <input
-                className="w-full bg-slate-800/50 border border-slate-600/50 rounded-xl pl-10 pr-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 backdrop-blur-sm"
+                className="w-full bg-slate-800/50 border border-slate-600/50 rounded-xl pl-10 pr-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 backdrop-blur-sm"
                 placeholder="e.g. instagram.com"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyPress}
               />
+              {suggestions.length > 0 && (
+                <ul className="absolute z-10 w-full mt-1 bg-slate-900 border border-slate-600 rounded-xl max-h-40 overflow-y-auto shadow-lg">
+                  {suggestions.map((domain, idx) => (
+                    <li
+                      key={idx}
+                      onClick={() => {
+                        setInput(domain);
+                        setSuggestions([]);
+                      }}
+                      className="px-4 py-2 cursor-pointer hover:bg-slate-700 text-white"
+                    >
+                      {domain}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
             <button
               onClick={handleAdd}
