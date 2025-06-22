@@ -22,7 +22,7 @@ const SwitchToggle: React.FC<SwitchToggleProps> = ({
             onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") onChange(!checked);
             }}
-            className="w-[48px] h-[24px] rounded-full cursor-pointer flex items-center px-[2px] transition-colors duration-300"
+            className="w-[48px] h-[24px] shadow-sm rounded-full cursor-pointer flex items-center px-[2px] transition-colors duration-300"
             style={{
                 backgroundColor: checked ? onColor : offColor,
             }}
