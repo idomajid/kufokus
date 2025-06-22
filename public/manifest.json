@@ -6,6 +6,10 @@
   "action": {
     "default_popup": "index.html"
   },
+  "icons": {
+    "48": "extension_icon48.png",
+    "128": "extension_icon128.png"
+  },
   "permissions": ["tabs", "storage"],
   "host_permissions": ["<all_urls>"],
   "background": {
