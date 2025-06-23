@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Kufokus",
   "version": "1.0.0",
-  "description": "Selesaikan pekerjaan tanpa hambatan",
+  "description": "Bring the energy, stay focused!",
   "action": {
     "default_popup": "index.html"
   },
