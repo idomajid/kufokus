@@ -143,7 +143,7 @@ export default function App() {
         {/* Blocked Sites List */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-slate-300">Blocked Sites</h3>
+            <h3 className="text-sm font-semibold text-slate-300">Blocked Sites <span className="bg-slate-700/50 px-2 py-1 rounded-full">{enabled == false ? <span className="text-red-500">OFF</span> : <span >ON</span>}</span></h3>
             <span className="bg-slate-700/50 text-slate-400 text-xs px-2 py-1 rounded-full">
               {blockedSites.length} sites
             </span>
@@ -162,7 +162,7 @@ export default function App() {
                   className="group flex justify-between items-center bg-slate-800/30 hover:bg-slate-700/50 border border-slate-700/30 rounded-lg p-3 transition-all duration-200"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                    {enabled == false ? <div className="w-2 h-2 bg-green-500 rounded-full"></div> : <div className="w-2 h-2 bg-red-500 rounded-full"></div>}
                     <span className="text-slate-200 font-medium">{site}</span>
                   </div>
                   <button
